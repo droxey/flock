@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  /* Neutral surfaces */
+  --color-background: #ffffff;
+  --color-foreground: #09090b;
+  --color-muted: #f4f4f5;
+  --color-muted-foreground: #71717a;
+  --color-border: #e4e4e7;
+
+  /* Near-black primary (not blue) — override in page-level theme if a brand color is truly needed */
+  --color-primary: #09090b;
+  --color-primary-foreground: #fafafa;
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+
+  /* Tight radii — slop-resistant */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.375rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #09090b;
+    --color-foreground: #fafafa;
+    --color-muted: #18181b;
+    --color-muted-foreground: #a1a1aa;
+    --color-border: #27272a;
+    --color-primary: #fafafa;
+    --color-primary-foreground: #09090b;
+  }
+}
+
+*,
+*::before,
+*::after {
+  border-color: var(--color-border);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent iOS tap-highlight flash on touch */
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  min-height: 100dvh;
+  /* Honor safe-area insets when opened in a mobile browser (no-op elsewhere) */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Opt-in tabular numerics for tables, timers, prices, counters */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Pixel agent card slide-up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.25s ease-out;
+}
